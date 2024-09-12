@@ -1,0 +1,3 @@
+CMDS = ["echo 4", "echo 5"]
+
+print("I'm the side effect! Behold!")

@@ -1,0 +1,48 @@
+repos:
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+    -   id: check-toml
+- repo: https://github.com/PyCQA/autoflake
+  rev: v2.2.1
+  hooks:
+  -   id: autoflake
+      args: [--remove-all-unused-imports, --ignore-init-module-imports, --in-place]
+- repo: https://github.com/psf/black
+  rev: 23.12.1
+  hooks:
+    -   id: black
+        exclude: |
+          (?x)^(
+            tests/data/test_dir_1/1/a.py
+          )$
+- repo: https://github.com/pycqa/flake8
+  rev: 7.0.0
+  hooks:
+  -   id: flake8
+      additional_dependencies:
+      - Flake8-pyproject
+      args: [--ignore=E203]
+      exclude: |
+        (?x)^(
+          tests/data/test_dir_1/1/a.py
+        )$
+-   repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.11.2
+    hooks:
+    -   id: mypy
+        args: [--ignore-missing-imports, --allow-untyped-decorators, --allow-subclassing-any]
+        exclude: |
+          (?x)^(
+            tests/data/test_dir_1/1/a.py
+          )$
+# export python requirements
+- repo: https://github.com/pdm-project/pdm
+  rev: 2.13.3
+  hooks:
+    - id: pdm-export
+      args: ['-o', 'requirements.txt', '--without-hashes']
+      files: ^pdm.lock$

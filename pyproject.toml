@@ -1,0 +1,32 @@
+[project]
+name = "gaijin_test"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "IdSaf", email = "idolarod1@gmail.com"},
+]
+dependencies = [
+    "click>=8.1.7",
+]
+requires-python = "==3.11.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.dev-dependencies]
+dev = [
+    "pytest>=8.3.3",
+]
+[tool.flake8]
+max-line-length = 150
+
+[tool.black]
+line-length = 150
+
+[tool.pytest.ini_options]
+pythonpath = [
+  "src"
+]
